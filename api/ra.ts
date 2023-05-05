@@ -4,7 +4,7 @@ import { service, FORMAT_CONTENT_TYPE } from '../service/edge'
 
 module.exports = async (request: Request, response: Response) => {
   console.debug(`请求正文：${request.body}`)
-  let token = process.env.TOKEN
+  let token
   if (token) {
     let authorization = request.headers['authorization']
     if (authorization != `Bearer ${token}`) {
