@@ -3,12 +3,12 @@ import * as bodyParser from 'body-parser'
 import * as cors from 'cors';
 
 const app = express()
-
+app.use(cors())
 const port = process.env.PORT ? parseInt(process.env.PORT) : 3000
 
 app.use(bodyParser.text({ type: '*/*' }))
 app.use(express.static('public'))
-app.use(cors())
+
 app.get('/api/legado', require('./api/legado'))
 app.post('/api/ra', require('./api/ra'))
 app.get('/api/azure', require('./api/azure'))
