@@ -26,7 +26,7 @@ module.exports = async (request: Request, response: Response) => {
         .end(JSON.stringify(data))
     } else {
       console.debug(`请求正文：${request.body}`)
-      let token = process.env.TOKEN
+      let token
       if (token) {
         let authorization = request.headers['authorization']
         if (authorization != `Bearer ${token}`) {
