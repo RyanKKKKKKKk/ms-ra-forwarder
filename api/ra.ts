@@ -3,17 +3,6 @@ import { retry } from '../retry'
 import { service, FORMAT_CONTENT_TYPE } from '../service/edge'
 
 module.exports = async (request: Request, response: Response) => {
-  console.debug(`请求正文：${request.body}`)
-  let token
-  if (false) {
-    let authorization = request.headers['authorization']
-    if (authorization != `Bearer ${token}`) {
-      console.error('无效的TOKEN')
-      response.status(401).json('无效的TOKEN')
-      return
-    }
-  }
-
   try {
     let format = request.headers['format'] || 'audio-16khz-32kbitrate-mono-mp3'
     if (Array.isArray(format)) {
