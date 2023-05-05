@@ -3,6 +3,12 @@ import { retry } from '../retry'
 import { service, FORMAT_CONTENT_TYPE } from '../service/edge'
 
 module.exports = async (request: Request, response: Response) => {
+if(request.method=="OPTIONS"){
+  response
+      .status(200)
+      .setHeader('Content-Type', FORMAT_CONTENT_TYPE.get(format))
+  return;
+}
   try {
     let format = request.headers['format'] || 'audio-16khz-32kbitrate-mono-mp3'
     if (Array.isArray(format)) {
