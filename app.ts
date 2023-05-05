@@ -5,7 +5,12 @@ import cors from "cors";
 
 const app = express()
 app.use(cors<Request>());
-app.options('*', cors()); // 处理所有预检请求
+app.options('*', (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  res.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.set('Access-Control-Allow-Headers', 'Content-Type');
+  res.status(200).send();
+});
 
 const port = process.env.PORT ? parseInt(process.env.PORT) : 3000
 
